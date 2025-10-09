@@ -32,6 +32,7 @@ export interface ICreateParcelPayload {
   assignedTo?: string;
 }
 
+
 export interface IUpdateParcelPayload {
   receiverName?: string;
   receiverAddress?: string;
