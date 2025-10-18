@@ -17,10 +17,10 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   });
 
   useEffect(() => {
-    if (isSuccess && data?.data) {
+    if (isSuccess && data) {
       dispatch(
         setCredentials({
-          user: data.data.user,
+          user: data.user,
           tokens: {
             accessToken: token,
             refreshToken: '',
