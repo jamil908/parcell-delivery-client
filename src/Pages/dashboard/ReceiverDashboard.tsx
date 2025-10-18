@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { Package, LogOut, Search, Filter, Eye, CheckCircle, Truck, Clock } from 'lucide-react';
+import { Package, LogOut, Search, Filter, Eye, CheckCircle,  } from 'lucide-react';
 import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts';
 import toast from 'react-hot-toast';
 
@@ -28,9 +27,9 @@ const ReceiverDashboard: React.FC = () => {
 
   // Filter parcels for receiver
   const allParcels = parcelsData?.data || [];
+  console.log(allParcels)
   const incomingParcels = allParcels.filter(
-    p => p.receiverName.toLowerCase() === user?.name?.toLowerCase() ||
-         p.receiverPhone === user?.phone
+    p => p.receiverName.toLowerCase() === user?.name?.toLowerCase() 
   );
 
   // Stats
@@ -61,7 +60,7 @@ const ReceiverDashboard: React.FC = () => {
 
   // Filter & paginate
   const filteredParcels = incomingParcels.filter(p => {
-    const matchesSearch = p.senderName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    const matchesSearch = p?.senderId?.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           p.receiverAddress.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesStatus = statusFilter === 'all' || p.status === statusFilter;
     return matchesSearch && matchesStatus;
@@ -159,7 +158,7 @@ const ReceiverDashboard: React.FC = () => {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                  label={({ name, percent }) => `${name}: ${(percent as number * 100).toFixed(0)}%`}
                   outerRadius={80}
                   dataKey="value"
                 >
@@ -238,6 +237,7 @@ const ReceiverDashboard: React.FC = () => {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Sender</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Address</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tracking id id</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Weight</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
@@ -246,10 +246,12 @@ const ReceiverDashboard: React.FC = () => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {paginatedParcels.map((parcel) => (
+                    
                     <tr key={parcel._id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{parcel.trackingId || parcel._id.slice(-6)}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{parcel.senderName}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{parcel.senderId.name}</td>
                       <td className="px-6 py-4 text-sm text-gray-900 max-w-xs truncate">{parcel.receiverAddress}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900 max-w-xs truncate">{parcel?._id}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{parcel.weight} kg</td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(parcel.status)}`}>

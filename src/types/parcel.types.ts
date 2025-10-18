@@ -24,6 +24,7 @@ export interface IParcel {
 }
 
 export interface ICreateParcelPayload {
+  senderId?: string;
   receiverName: string;
   receiverAddress: string;
   receiverPhone: string;

@@ -1,5 +1,5 @@
 
-import React from 'react';
+
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import type { TUserRole } from '@/types/user.types';
@@ -9,7 +9,7 @@ interface ProtectedRouteProps {
   allowedRoles?: TUserRole[];
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles }) => {
+const ProtectedRoute:React.FC<ProtectedRouteProps> = ({ children, allowedRoles })=>  {
   const { isAuthenticated, user } = useAuth();
 
   if (!isAuthenticated) {
@@ -31,4 +31,4 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
   return <>{children}</>;
 };
 
-export default ProtectedRoute;
+export default ProtectedRoute

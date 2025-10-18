@@ -26,6 +26,7 @@ export interface ILoginPayload {
 export interface IAuthResponse {
   success: boolean;
   message: string;
+
   data: {
     user: IUser;
     tokens: {

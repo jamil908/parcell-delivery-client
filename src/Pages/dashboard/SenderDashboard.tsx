@@ -18,8 +18,9 @@ const SenderDashboard: React.FC = () => {
   const dispatch = useAppDispatch();
   const { user } = useAuth();
   const [logoutMutation] = useLogoutMutation();
-    const {data}=useGetMeQuery(undefined)
-    const name = data?.user?.name
+    const {data}=useGetMeQuery()
+    
+   
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
@@ -33,7 +34,7 @@ const SenderDashboard: React.FC = () => {
 console.log(parcelsData,"inside sender dashboard")
   // Filter parcels for sender
   const allParcels = parcelsData?.data || [];
-  const userParcels = allParcels.filter(p => p.senderId?._id === user?.id || p.senderId?.name === user?.name);
+  const userParcels = allParcels.filter(p => p.senderId?._id === user?._id || p.senderId?.name === user?.name);
 
   // Calculate stats
   const stats = {
@@ -88,7 +89,7 @@ const onSubmitParcel = async (data: ICreateParcelPayload) => {
   try {
     await createParcel({
       ...data,
-      senderId: user._id, // ✅ use user id directly
+      senderId: user._id, 
     }).unwrap();
 
     toast.success('Parcel created successfully!');
@@ -215,7 +216,7 @@ const onSubmitParcel = async (data: ICreateParcelPayload) => {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                  label={({ name, percent }) => `${name}: ${(percent as number * 100).toFixed(0)}%`}
                   outerRadius={80}
                   fill="#8884d8"
                   dataKey="value"

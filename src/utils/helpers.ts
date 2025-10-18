@@ -61,9 +61,17 @@ export const setUserData = (user: any): void => {
   localStorage.setItem('user', JSON.stringify(user));
 };
 
-export const getUserData = (): any | null => {
-  const user = localStorage.getItem('user');
-  return user ? JSON.parse(user) : null;
+// export const getUserData = (): any | null => {
+//   const user = localStorage.getItem('user');
+//   return user ? JSON.parse(user) : null;
+// };
+export const getUserData = <T = any>(): T | null => {
+  try {
+    const stored = localStorage.getItem('user');
+    return stored ? JSON.parse(stored) : null;
+  } catch {
+    return null;
+  }
 };
 
 export const removeUserData = (): void => {

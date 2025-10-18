@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { Package, Search, MapPin, Clock, CheckCircle, Truck, ArrowLeft } from 'lucide-react';
+import { Package, Search, MapPin, CheckCircle, Truck, ArrowLeft } from 'lucide-react';
 import { useGetParcelByIdQuery } from '@/redux/api/parcelApi';
 import { getStatusColor, getStatusLabel, formatDateTime } from '@/utils/helpers';
+import Navbar from '@/components/shared/Navbar';
 
 interface TrackingFormData {
   trackingId: string;
@@ -32,20 +33,7 @@ export const Tracking = () => {
 
   const parcel = data?.data;
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'pending':
-        return <Clock className="w-6 h-6 text-yellow-600" />;
-      case 'picked':
-        return <Package className="w-6 h-6 text-blue-600" />;
-      case 'in-transit':
-        return <Truck className="w-6 h-6 text-purple-600" />;
-      case 'delivered':
-        return <CheckCircle className="w-6 h-6 text-green-600" />;
-      default:
-        return <Package className="w-6 h-6 text-gray-600" />;
-    }
-  };
+
 
   const statusTimeline = [
     { status: 'pending', label: 'Order Placed' },
@@ -61,31 +49,8 @@ export const Tracking = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navbar */}
-      <nav className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-2">
-              <Package className="w-8 h-8 text-blue-600" />
-              <span className="text-2xl font-bold text-gray-900">ParcelPro</span>
-            </Link>
-            
-            <div className="flex items-center space-x-6">
-              <Link to="/" className="text-gray-700 hover:text-blue-600 transition">
-                Home
-              </Link>
-              <Link to="/about" className="text-gray-700 hover:text-blue-600 transition">
-                About
-              </Link>
-              <Link to="/contact" className="text-gray-700 hover:text-blue-600 transition">
-                Contact
-              </Link>
-              <Link to="/login" className="text-blue-600 font-semibold">
-                Login
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+
+      <Navbar></Navbar>
 
       {/* Header */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">

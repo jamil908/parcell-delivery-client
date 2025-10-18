@@ -1,11 +1,11 @@
 
 import type { IApiResponse } from '@/types/api.types';
 import { apiSlice } from './apiSlice';
-import type { IUpdateBlockStatusPayload, IUpdateRolePayload, IUser } from '@/types/user.types';
+import type { IAuthResponse, IUpdateBlockStatusPayload, IUpdateRolePayload, IUser } from '@/types/user.types';
 export const userApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // Get current user
-    getMe: builder.query<IApiResponse<IUser>, void>({
+    getMe: builder.query<IAuthResponse, void>({
       query: () => '/users/me',
       providesTags: ['Auth'],
     }),
