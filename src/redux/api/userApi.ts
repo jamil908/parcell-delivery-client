@@ -1,14 +1,18 @@
 
 import type { IApiResponse } from '@/types/api.types';
 import { apiSlice } from './apiSlice';
-import type { IAuthResponse, IUpdateBlockStatusPayload, IUpdateRolePayload, IUser } from '@/types/user.types';
+import type {  IGetMeResponse, IUpdateBlockStatusPayload, IUpdateRolePayload, IUser } from '@/types/user.types';
 export const userApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // Get current user
-    getMe: builder.query<IAuthResponse, void>({
-      query: () => '/users/me',
+    // getMe: builder.query<IAuthResponse, void>({
+    //   query: () => '/users/me',
+    //   providesTags: ['Auth'],
+    // }),
+    getMe: builder.query<IGetMeResponse, void>({ // <-- Use the new IGetMeResponse type
+     query: () => '/users/me',
       providesTags: ['Auth'],
-    }),
+     }),
 
     // Get all users (Admin only)
     getAllUsers: builder.query<IApiResponse<IUser[]>, void>({

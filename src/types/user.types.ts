@@ -44,3 +44,9 @@ export interface IUpdateBlockStatusPayload {
   isBlocked: boolean;
 }
 
+export interface IGetMeResponse {
+  success: boolean;
+  message?: string; // message might not be present on success
+  user: IUser; // <-- User object is directly here
+  // Note: Tokens are usually NOT returned by a 'getMe' endpoint, only on login.
+}

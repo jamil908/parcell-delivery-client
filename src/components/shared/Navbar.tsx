@@ -11,19 +11,17 @@ const Navbar = () => {
       const dispatch = useAppDispatch();
       const navigate = useNavigate();
     
-      // Fetch current user
-      // const { data, isLoading, isError } = useGetMeQuery(undefined, {
-      //   refetchOnMountOrArgChange: true,
-      // });
+  const { data, isLoading } = useGetMeQuery(undefined, {
+      refetchOnMountOrArgChange: true, 
+    });
     
-    
-      const { data, isLoading } = useGetMeQuery();
-    
+    console.log("Full API Response Data:", data);
+  
       console.log(data);
+const user = data?.user || null; 
     
-      
-    const user = data?.user || null;
-      console.log(user);
+    console.log("Extracted User Object:", user);
+    console.log(user);
     
       const [logoutMutation] = useLogoutMutation();
     
