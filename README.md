@@ -28,6 +28,14 @@ It supports **role-based access** (Admin, Sender, Receiver), real-time status up
 - Manage users and parcels  
 - View delivery statistics  
 - Monitor platform activity  
+### Sender Dashboard
+- Create parcel delivery requests
+- Cancel parcel (if not dispatched)
+- View all created parcels and their status logs
+### Receiver Dashboard
+- View incoming parcels
+- Confirm parcel delivery
+- View delivery history
 
 ### 🚦 Role-Based Routing
 - Protected routes for each user type  
