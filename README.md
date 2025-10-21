@@ -1,69 +1,70 @@
-# React + TypeScript + Vite
+# 🚚 Parcel Delivery Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-featured web application for managing parcel deliveries — built with **React**, **TypeScript**, and **Node.js**.  
+It supports **role-based access** (Admin, Sender, Receiver), real-time status updates, and secure authentication.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Demo
+👉 [https://percell-delivery-client.vercel.app/]
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧩 Features
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🔐 Authentication & Roles
+- User registration & login (JWT-based)
+- Three roles:
+  - **Admin** – manage users, parcels, and system overview  
+  - **Sender** – create and manage parcel shipments  
+  - **Receiver** – track and confirm deliveries  
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### 📦 Parcel Management
+- Create, update, and track parcels  
+- Real-time status updates (e.g., *pending*, *in-transit*, *delivered*)  
+- Receiver confirmation system  
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### ⚙️ Admin Dashboard
+- Manage users and parcels  
+- View delivery statistics  
+- Monitor platform activity  
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🚦 Role-Based Routing
+- Protected routes for each user type  
+- Unauthorized access redirects to a custom **403 Unauthorized** page  
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 💬 Notifications
+- Toast alerts for status updates  
+- Visual indicators for delivery confirmation  
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🎨 UI/UX
+- Built with **Tailwind CSS** and **shadcn/ui components**  
+- Fully responsive for mobile and desktop  
+- Clean, modern dashboard layout  
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technologies |
+|-----------|---------------|
+| **Frontend** | React, TypeScript, Vite, Tailwind CSS, ShadCN/UI, Lucide Icons |
+| **State Management** | Redux Toolkit, RTK Query |
+| **Routing** | React Router DOM |
+| **Backend** | Node.js, Express.js, MongoDB (Mongoose) |
+| **Auth** | JWT Authentication |
+| **Deployment** | Vercel (Frontend), Render / Railway (Backend) |
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/yourusername/parcel-delivery-system.git
+cd parcel-delivery-system
+| Role         | Email                                               | Password | Description                             |
+| ------------ | --------------------------------------------------- | -------- | --------------------------------------- |
+| **Admin**    | [admin@example.com](mailto:admin@example.com)       | 123456   | Full access: manage all users & parcels |
+| **Sender**   | [sender@example.com](mailto:sender@example.com)     | 123456   | Can create and send parcels             |
+| **Receiver** | [receiver@example.com](mailto:receiver@example.com) | 123456   | Can view and confirm received parcels   |
