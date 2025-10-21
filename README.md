@@ -63,6 +63,48 @@ It supports **role-based access** (Admin, Sender, Receiver), real-time status up
 ```bash
 git clone https://github.com/yourusername/parcel-delivery-system.git
 cd parcel-delivery-system
+2️⃣ Install Dependencies
+
+For the frontend:
+
+cd client
+npm install
+
+
+For the backend:
+
+cd server
+npm install
+
+3️⃣ Run Locally
+Frontend:
+npm run dev
+
+
+Visit: http://localhost:5173
+
+Backend:
+npm run dev
+
+
+API runs on: http://localhost:5000
+
+🔑 Environment Variables
+
+Create a .env file in both frontend and backend directories.
+
+🖥️ Frontend .env
+VITE_API_URL=http://localhost:5000/api/v1
+
+🧠 Backend .env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+
+👤 Role-Based Login Guide
+
+Once your backend is running and seeded with test users (or manually created via registration),
+you can log in to each role using the following demo credentials:
 | Role         | Email                                               | Password | Description                             |
 | ------------ | --------------------------------------------------- | -------- | --------------------------------------- |
 | **Admin**    | [admin@example.com](mailto:admin@example.com)       | 123456   | Full access: manage all users & parcels |
