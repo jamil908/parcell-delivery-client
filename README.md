@@ -69,7 +69,7 @@ It supports **role-based access** (Admin, Sender, Receiver), real-time status up
 
 |  Role         | Email                  | Password | Description   
 |---------------|------------------------|----------|------------------------------------------|
-|  **Admin**    | admin@example.com      | 12345678 || Full access: manage all users & parcels |
+|  **Admin**    | admin@example.com      | 12345678 | Full access: manage all users & parcels, |
 | **Sender**    | sender@example.com     | 12345678 | Can create and send parcels              |
 | **Receiver**  | receiver@example.com   | 12345678 | Can view and confirm received parcels    |
 
