@@ -96,14 +96,15 @@ const user = data?.user || null;
                           Receiver Dashboard
                         </Link>
                       )}
+                  
                       {user?.role === "admin" && (
-                        <Link
-                          to="/sender-admin"
-                          className="text-gray-700 hover:text-blue-600 transition"
-                        >
-                          Admin Dashboard
-                        </Link>
-                      )}
+  <Link
+    to="/admin-dashboard"  // ✅ Changed from "/sender-admin"
+    className="text-gray-700 hover:text-blue-600 transition"
+  >
+    Admin Dashboard
+  </Link>
+)}
         
                       {/* Auth Buttons */}
                       {!isLoading && !user && (
