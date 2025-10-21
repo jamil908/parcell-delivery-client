@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link,  } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { Package, LogOut, Plus, X, Search, Filter, Eye, XCircle, Truck, CheckCircle, Clock } from 'lucide-react';
+import { Package,  Plus, X, Search, Filter, Eye, XCircle, Truck, CheckCircle, Clock } from 'lucide-react';
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useAuth } from '@/hooks/useAuth';
-import { useAppDispatch } from '@/redux/hooks';
-import { logout as logoutAction } from '@/redux/features/authSlice';
-import { useLogoutMutation } from '@/redux/api/authApi';
 import { useCreateParcelMutation, useGetAllParcelsQuery, useUpdateParcelMutation } from '@/redux/api/parcelApi';
 import { getStatusColor, getStatusLabel, formatDate } from '@/utils/helpers';
 import toast from 'react-hot-toast';
 import type { ICreateParcelPayload } from '@/types/parcel.types';
 import { useGetMeQuery } from '@/redux/api/userApi';
+import Navbar from '@/components/shared/Navbar';
 
 const SenderDashboard: React.FC = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+ 
   const { user } = useAuth();
-  const [logoutMutation] = useLogoutMutation();
+
     const {data}=useGetMeQuery()
     
    
@@ -114,45 +111,12 @@ const onSubmitParcel = async (data: ICreateParcelPayload) => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await logoutMutation().unwrap();
-      dispatch(logoutAction());
-      toast.success('Logged out successfully');
-      navigate('/login');
-    } catch (error) {
-      dispatch(logoutAction());
-      navigate('/login');
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navbar */}
-      <nav className="bg-white shadow-sm border-b sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center space-x-2">
-              <Package className="w-8 h-8 text-blue-600" />
-              <span className="text-xl font-bold text-gray-900">ParcelPro</span>
-            </div>
-            
-            <div className="flex items-center space-x-6">
-              <Link to="/tracking" className="text-gray-700 hover:text-blue-600">
-                Track Parcel
-              </Link>
-              <span className="text-sm text-gray-600">{user?.name}</span>
-              <button
-                onClick={handleLogout}
-                className="flex items-center space-x-2 text-red-600 hover:text-red-700"
-              >
-                <LogOut className="w-5 h-5" />
-                <span>Logout</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar></Navbar>
+    
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}

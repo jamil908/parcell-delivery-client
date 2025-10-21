@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Package, LogOut, Search, Filter, Eye, CheckCircle,  } from 'lucide-react';
+import { Link,  } from 'react-router-dom';
+import { Package,  Search, Filter, Eye, CheckCircle, Cross,  } from 'lucide-react';
 import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts';
 import toast from 'react-hot-toast';
 
 import { useAuth } from '@/hooks/useAuth';
-import { useAppDispatch } from '@/redux/hooks';
-import { logout as logoutAction } from '@/redux/features/authSlice';
-import { useLogoutMutation } from '@/redux/api/authApi';
 import { useGetAllParcelsQuery, useUpdateParcelMutation } from '@/redux/api/parcelApi';
 import { getStatusColor, getStatusLabel, formatDate } from '@/utils/helpers';
+import Navbar from '@/components/shared/Navbar';
 
 const ReceiverDashboard: React.FC = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+
   const { user } = useAuth();
 
-  const [logoutMutation] = useLogoutMutation();
+ 
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
@@ -87,38 +84,12 @@ const ReceiverDashboard: React.FC = () => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await logoutMutation().unwrap();
-      dispatch(logoutAction());
-      toast.success('Logged out successfully');
-      navigate('/login');
-    } catch {
-      dispatch(logoutAction());
-      navigate('/login');
-    }
-  };
+
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navbar */}
-      <nav className="bg-white shadow-sm border-b sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center space-x-2">
-              <Package className="w-8 h-8 text-blue-600" />
-              <span className="text-xl font-bold text-gray-900">ParcelPro</span>
-            </div>
-            <div className="flex items-center space-x-6">
-              <Link to="/tracking" className="text-gray-700 hover:text-blue-600">Track Parcel</Link>
-              <span className="text-sm text-gray-600">{user?.name}</span>
-              <button onClick={handleLogout} className="flex items-center space-x-2 text-red-600 hover:text-red-700">
-                <LogOut className="w-5 h-5" /><span>Logout</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar></Navbar>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
@@ -273,6 +244,7 @@ const ReceiverDashboard: React.FC = () => {
                               <CheckCircle className="w-5 h-5" />
                             </button>
                           )}
+                    
                         </div>
                       </td>
                     </tr>
