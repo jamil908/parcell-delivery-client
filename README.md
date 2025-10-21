@@ -65,11 +65,21 @@ It supports **role-based access** (Admin, Sender, Receiver), real-time status up
 
 ---
 
+## you can log in to each role using the following demo credentials:
+
+|  Role         | Email                  | Password | Description   
+|---------------|------------------------|----------|------------------------------------------|
+|  **Admin**    | admin@example.com      | 12345678 || Full access: manage all users & parcels |
+| **Sender**    | sender@example.com     | 12345678 | Can create and send parcels              |
+| **Receiver**  | receiver@example.com   | 12345678 | Can view and confirm received parcels    |
+
+---
+
 ## 🚀 Getting Started
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/yourusername/parcel-delivery-system.git
+git clone https://github.com/jamil908/parcell-delivery-client
 cd parcel-delivery-system
 2️⃣ Install Dependencies
 
@@ -111,10 +121,4 @@ JWT_SECRET=your_jwt_secret_key
 
 👤 Role-Based Login Guide
 
-Once your backend is running and seeded with test users (or manually created via registration),
-you can log in to each role using the following demo credentials:
-| Role         | Email                                               | Password | Description                             |
-| ------------ | --------------------------------------------------- | -------- | --------------------------------------- |
-| **Admin**    | [admin@example.com](mailto:admin@example.com)       | 123456   | Full access: manage all users & parcels |
-| **Sender**   | [sender@example.com](mailto:sender@example.com)     | 123456   | Can create and send parcels             |
-| **Receiver** | [receiver@example.com](mailto:receiver@example.com) | 123456   | Can view and confirm received parcels   |
+ Once your backend is running and seeded with test users (or manually created via registration)
