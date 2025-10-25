@@ -122,3 +122,21 @@ JWT_SECRET=your_jwt_secret_key
 👤 Role-Based Login Guide
 
  Once your backend is running and seeded with test users (or manually created via registration)
+
+
+
+**Jamil Hossain**
+- GitHub:
+- Email: jamilhossainrafi@gmail.com
+---
+
+
+---
+
+## 📞 Support
+
+For support, email  jamilhossainrafi@gmail.com or join our Slack channel.
+
+---
+
+**⭐ If you found this helpful, please give it a star!**
