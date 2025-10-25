@@ -13,7 +13,6 @@ import Landing from '@/Pages/Landing';
 import NotFound from '@/Pages/NotFound';
 import { Tracking } from '@/Pages/Tracking';
 import Unauthorized from '@/Pages/Unauthorized';
-import { Contact } from 'lucide-react';
 import { createBrowserRouter } from 'react-router';
 
 export const router = createBrowserRouter([
