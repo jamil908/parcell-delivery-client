@@ -49,26 +49,26 @@ const AdminUsersTable = () => {
   return (
     <div className="p-4">
       <h2 className="text-xl font-semibold mb-4">👥 User Management</h2>
-
-      <table className="w-full border-collapse border border-gray-300">
+      <div className="overflow-x-auto border border-gray-200 rounded-lg">
+        <table className="w-full border-collapse border border-gray-300">
         <thead className="bg-gray-100">
           <tr>
-            <th className="border px-3 py-2">Name</th>
-            <th className="border px-3 py-2">Email</th>
-            <th className="border px-3 py-2">Role</th>
-            <th className="border px-3 py-2">Status</th>
-            <th className="border px-3 py-2">Actions</th>
+            <th className="border   px-1  md:px-3  md:py-2">Name</th>
+            <th className="border  px-1  md:px-3  md:py-2">Email</th>
+            <th className="border  px-1  md:px-3  md:py-2">Role</th>
+            <th className="border  px-1  md:px-3  md:py-2">Status</th>
+            <th className="border  px-1  md:px-3  md:py-2">Actions</th>
           </tr>
         </thead>
 
         <tbody>
           {data?.data?.map((user) => (
             <tr key={user._id}>
-              <td className="border px-3 py-2">{user.name}</td>
-              <td className="border px-3 py-2">{user.email}</td>
+              <td className="border  px-1  md:px-3  md:py-2">{user.name}</td>
+              <td className="border  px-1  md:px-3  md:py-2">{user.email}</td>
 
               {/* Role select dropdown */}
-              <td className="border px-3 py-2">
+              <td className="border  px-1  md:px-3  md:py-2">
                 <select
                   value={user.role}
                   onChange={(e) => handleRoleChange(user._id, e.target.value)}
@@ -81,7 +81,7 @@ const AdminUsersTable = () => {
                 </select>
               </td>
 
-              <td className="border px-3 py-2">
+              <td className="border  px-1  md:px-3  md:py-2">
                 {user.isBlocked ? (
                   <span className="text-red-600 font-medium">Blocked</span>
                 ) : (
@@ -89,7 +89,7 @@ const AdminUsersTable = () => {
                 )}
               </td>
 
-              <td className="border px-3 py-2 space-x-2">
+              <td className="border  px-1  md:px-3  md:py-2 space-x-2">
                 <Button
                   variant="outline"
                   size="sm"
@@ -110,6 +110,8 @@ const AdminUsersTable = () => {
           ))}
         </tbody>
       </table>
+      </div>
+      
     </div>
   );
 };

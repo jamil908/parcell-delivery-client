@@ -32,7 +32,7 @@ export default function AdminParcelsTable() {
   const parcels = data?.data || [];
 
   return (
-    <div className="p-4">
+    <div className=" md:p-4 p-1">
       <h2 className="text-xl font-bold mb-4">All Parcels</h2>
       <div className="overflow-x-auto border border-gray-200 rounded-lg">
         <table className="w-full text-sm text-center">

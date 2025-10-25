@@ -133,7 +133,7 @@ const AdminDashboard: React.FC = () => {
     </aside>
 
     {/* Main Content */}
-    <div className="flex-1 p-4 md:p-8 overflow-x-hidden">
+    <div className="flex-1 p-2 md:p-8 overflow-x-hidden">
   
       {/* Mobile menu toggle */}
       <div className="md:hidden flex items-center justify-between mb-4">
@@ -211,14 +211,14 @@ const AdminDashboard: React.FC = () => {
 
       {/* Parcels Tab */}
       {activeTab === "parcels" && (
-        <div className="bg-white rounded-xl shadow p-4">
+        <div className="bg-white rounded-xl shadow md:p-4 p-1">
           <AdminParcelsTable />
         </div>
       )}
 
       {/* Users Tab */}
       {activeTab === "users" && (
-        <div className="bg-white rounded-xl shadow p-4">
+        <div className="bg-white rounded-xl shadow  md:p-4 p-1">
           <AdminUsersTable />
         </div>
       )}
