@@ -1,8 +1,8 @@
-
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Mail, Phone, MapPin, Clock, Send, CheckCircle, Package, 
-  MessageSquare, User, Truck, Navigation, Headphones, AlertCircle 
+  MessageSquare, User, Headphones, AlertCircle, ArrowLeft
 } from 'lucide-react';
 import Navbar from '@/components/shared/Navbar';
 
@@ -29,10 +29,10 @@ const ContactPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission (replace with actual API call)
+    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
 
-    console.log('Parcel delivery inquiry submitted:', formData);
+    console.log('Contact inquiry submitted:', formData);
     setIsSubmitted(true);
     setIsSubmitting(false);
 
@@ -44,363 +44,280 @@ const ContactPage = () => {
   };
 
   return (
+    <div className="min-h-screen bg-black text-zinc-100">
+      <Navbar />
 
-    <>
-    <Navbar></Navbar>
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Package className="w-12 h-12 text-orange-600" />
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">Contact Delivery Support</h1>
+      {/* Animated Background */}
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-purple-600/20 rounded-full blur-[150px] animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[150px] animate-pulse" style={{ animationDuration: '6s', animationDelay: '1s' }} />
+      </div>
+
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/"
+            className="inline-flex items-center space-x-2 text-zinc-400 hover:text-purple-400 mb-8 transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            <span>Back to Home</span>
+          </Link>
+
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 px-4 py-2 rounded-full border border-purple-500/20 mb-6">
+              <Headphones className="w-4 h-4 text-purple-400" />
+              <span className="text-sm font-bold text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text uppercase tracking-wider">
+                24/7 Support
+              </span>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">
+              Get in <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Touch</span>
+            </h1>
+            <p className="text-xl text-zinc-400 max-w-3xl mx-auto leading-relaxed">
+              Need help with your parcel? Our support team is here 24/7 to assist you with tracking, delivery issues, or any questions.
+            </p>
           </div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Need help with your parcel delivery? Our support team is here 24/7 to assist you with tracking, delivery issues, or any questions.
-          </p>
         </div>
+      </section>
 
-        {/* Quick Action Buttons */}
-        <div className="grid md:grid-cols-3 gap-4 mb-12">
-          <button className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition text-center group">
-            <Truck className="w-10 h-10 text-orange-600 mx-auto mb-3 group-hover:scale-110 transition" />
-            <h3 className="font-bold text-gray-900 mb-1">Track Your Parcel</h3>
-            <p className="text-sm text-gray-600">Real-time tracking updates</p>
-          </button>
-          <button className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition text-center group">
-            <Navigation className="w-10 h-10 text-blue-600 mx-auto mb-3 group-hover:scale-110 transition" />
-            <h3 className="font-bold text-gray-900 mb-1">Schedule Pickup</h3>
-            <p className="text-sm text-gray-600">Book a pickup time</p>
-          </button>
-          <button className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition text-center group">
-            <Headphones className="w-10 h-10 text-green-600 mx-auto mb-3 group-hover:scale-110 transition" />
-            <h3 className="font-bold text-gray-900 mb-1">Live Chat</h3>
-            <p className="text-sm text-gray-600">Instant support available</p>
-          </button>
-        </div>
-
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Contact Information Cards */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* 24/7 Hotline */}
-            <div className="bg-gradient-to-br from-orange-500 to-red-500 text-white rounded-xl shadow-lg p-6">
-              <div className="flex items-start gap-4">
-                <div className="bg-white/20 p-3 rounded-lg backdrop-blur">
-                  <Phone className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-bold mb-2 text-lg">24/7 Hotline</h3>
-                  <p className="text-white/90 text-sm mb-2">
-                    Call us anytime for urgent delivery support
-                  </p>
-                  <p className="font-bold text-xl">+880 1800-DELIVERY</p>
-                  <p className="text-sm mt-1">+880 1234-567890</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Email Support */}
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
-              <div className="flex items-start gap-4">
-                <div className="bg-green-100 p-3 rounded-lg">
-                  <Mail className="w-6 h-6 text-green-600" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-2">Email Support</h3>
-                  <p className="text-gray-600 text-sm mb-2">
-                    Response within 2 hours
-                  </p>
-                  <p className="text-sm font-semibold text-gray-800">support@deliveryhub.com</p>
-                  <p className="text-sm text-gray-600">tracking@deliveryhub.com</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Main Office */}
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
-              <div className="flex items-start gap-4">
-                <div className="bg-blue-100 p-3 rounded-lg">
-                  <MapPin className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-2">Main Office</h3>
-                  <p className="text-gray-600 text-sm">
-                    456 Delivery Hub Road<br />
-                    Chattogram, Bangladesh<br />
-                    Postal Code: 4100
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Service Hours */}
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
-              <div className="flex items-start gap-4">
-                <div className="bg-purple-100 p-3 rounded-lg">
-                  <Clock className="w-6 h-6 text-purple-600" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-2">Service Hours</h3>
-                  <div className="text-sm text-gray-600 space-y-1">
-                    <p className="flex justify-between">
-                      <span>Pickup & Delivery:</span>
-                      <span className="font-semibold">24/7</span>
-                    </p>
-                    <p className="flex justify-between">
-                      <span>Office Hours:</span>
-                      <span className="font-semibold">9 AM - 9 PM</span>
-                    </p>
-                    <p className="flex justify-between">
-                      <span>Customer Support:</span>
-                      <span className="font-semibold">24/7</span>
-                    </p>
+      {/* Contact Cards Grid */}
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {/* Contact Cards */}
+            {[
+              { icon: Phone, title: '24/7 Hotline', info: '+1-800-PARCEL', gradient: 'from-purple-500 to-pink-500' },
+              { icon: Mail, title: 'Email Us', info: 'support@parcelpro.com', gradient: 'from-cyan-500 to-blue-500' },
+              { icon: MapPin, title: 'Visit Us', info: 'Palo Alto, CA', gradient: 'from-blue-500 to-purple-500' },
+              { icon: Clock, title: 'Office Hours', info: '24/7 Service', gradient: 'from-purple-600 to-cyan-600' }
+            ].map((item, index) => (
+              <div key={index} className="relative group">
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient}/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 p-6 rounded-2xl hover:border-purple-500/50 transition-all duration-500 text-center">
+                  <div className={`w-14 h-14 bg-gradient-to-br ${item.gradient} rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg`}>
+                    <item.icon className="w-7 h-7 text-white" />
                   </div>
+                  <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                  <p className="text-zinc-400 text-sm">{item.info}</p>
                 </div>
               </div>
-            </div>
-
-            {/* Emergency Contact */}
-            <div className="bg-red-50 border-2 border-red-200 rounded-xl p-6">
-              <div className="flex items-start gap-3">
-                <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0" />
-                <div>
-                  <h3 className="font-bold text-red-900 mb-1">Emergency Contact</h3>
-                  <p className="text-sm text-red-700">
-                    For lost or damaged parcels, call our emergency line immediately: 
-                    <span className="block font-bold text-lg mt-1">+880 1999-URGENT</span>
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl shadow-xl p-8">
-              {isSubmitted ? (
-                <div className="text-center py-12">
-                  <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-4 animate-bounce" />
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Received! 📦</h3>
-                  <p className="text-gray-600 mb-4">
-                    Thank you for contacting us. Our support team will respond within 1-2 hours.
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    Check your email for a confirmation message with your ticket number.
-                  </p>
-                </div>
-              ) : (
-                <>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                    <MessageSquare className="w-7 h-7 text-orange-600" />
-                    Submit Your Inquiry
-                  </h2>
-
-                  <div className="space-y-6">
-                    {/* Name & Phone Row */}
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Name */}
-                      <div>
-                        <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                          <User className="w-4 h-4 text-orange-600" />
-                          Full Name <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition"
-                          placeholder="Enter your full name"
-                          required
-                        />
-                      </div>
-
-                      {/* Phone */}
-                      <div>
-                        <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                          <Phone className="w-4 h-4 text-orange-600" />
-                          Phone Number <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition"
-                          placeholder="+880 1XXX-XXXXXX"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    {/* Email & Tracking Number Row */}
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Email */}
-                      <div>
-                        <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                          <Mail className="w-4 h-4 text-orange-600" />
-                          Email Address <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition"
-                          placeholder="your.email@example.com"
-                          required
-                        />
-                      </div>
-
-                      {/* Tracking Number */}
-                      <div>
-                        <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                          <Package className="w-4 h-4 text-orange-600" />
-                          Tracking Number
-                        </label>
-                        <input
-                          type="text"
-                          name="trackingNumber"
-                          value={formData.trackingNumber}
-                          onChange={handleChange}
-                          className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition"
-                          placeholder="DH123456789BD (optional)"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Subject */}
-                    <div>
-                      <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                        <MessageSquare className="w-4 h-4 text-orange-600" />
-                        Issue Type <span className="text-red-500">*</span>
-                      </label>
-                      <select
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition"
-                        required
-                      >
-                        <option value="">Select issue type</option>
-                        <option value="tracking">📍 Tracking Issue</option>
-                        <option value="delayed">⏰ Delayed Delivery</option>
-                        <option value="damaged">📦 Damaged Parcel</option>
-                        <option value="lost">❌ Lost Parcel</option>
-                        <option value="pickup">🚚 Schedule Pickup</option>
-                        <option value="pricing">💰 Pricing Inquiry</option>
-                        <option value="feedback">⭐ Feedback</option>
-                        <option value="other">🔧 Other</option>
-                      </select>
-                    </div>
-
-                    {/* Message */}
-                    <div>
-                      <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                        <MessageSquare className="w-4 h-4 text-orange-600" />
-                        Describe Your Issue <span className="text-red-500">*</span>
-                      </label>
-                      <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows={6}
-                        className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition resize-none"
-                        placeholder="Please provide as much detail as possible about your delivery issue..."
-                        required
-                      />
-                      <p className="text-sm text-gray-500 mt-1">
-                        Include tracking number, delivery address, and date if applicable
+          <div className="grid lg:grid-cols-5 gap-8">
+            {/* Contact Form */}
+            <div className="lg:col-span-3">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-cyan-500/10 rounded-3xl blur-2xl"></div>
+                <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-3xl">
+                  {isSubmitted ? (
+                    <div className="text-center py-12">
+                      <CheckCircle className="w-20 h-20 text-cyan-400 mx-auto mb-4 animate-bounce" />
+                      <h3 className="text-3xl font-black text-white mb-2">Message Received!</h3>
+                      <p className="text-zinc-400 mb-4">
+                        Thank you for contacting us. Our support team will respond within 1-2 hours.
+                      </p>
+                      <p className="text-sm text-zinc-500">
+                        Check your email for a confirmation message with your ticket number.
                       </p>
                     </div>
+                  ) : (
+                    <>
+                      <h2 className="text-3xl font-black text-white mb-8 flex items-center gap-2">
+                        <MessageSquare className="w-8 h-8 text-purple-400" />
+                        Send us a Message
+                      </h2>
 
-                    {/* Submit Button */}
-                    <button
-                      onClick={handleSubmit}
-                      disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white py-4 px-6 rounded-lg hover:from-orange-700 hover:to-red-700 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed transition flex items-center justify-center gap-2 font-semibold text-lg shadow-lg"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                          Submitting...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-5 h-5" />
-                          Submit Inquiry
-                        </>
-                      )}
-                    </button>
+                      <form onSubmit={handleSubmit} className="space-y-6">
+                        {/* Name & Email */}
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <label className="flex items-center gap-2 text-sm font-bold text-zinc-300 mb-2">
+                              <User className="w-4 h-4 text-purple-400" />
+                              Full Name <span className="text-red-400">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="name"
+                              value={formData.name}
+                              onChange={handleChange}
+                              className="w-full bg-black/40 border border-white/10 text-white p-3 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition placeholder-zinc-500"
+                              placeholder="Enter your full name"
+                              required
+                            />
+                          </div>
 
-                    <p className="text-center text-sm text-gray-500">
-                      💬 Need immediate help? Call our 24/7 hotline: <span className="font-bold">+880 1800-DELIVERY</span>
-                    </p>
+                          <div>
+                            <label className="flex items-center gap-2 text-sm font-bold text-zinc-300 mb-2">
+                              <Mail className="w-4 h-4 text-purple-400" />
+                              Email <span className="text-red-400">*</span>
+                            </label>
+                            <input
+                              type="email"
+                              name="email"
+                              value={formData.email}
+                              onChange={handleChange}
+                              className="w-full bg-black/40 border border-white/10 text-white p-3 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition placeholder-zinc-500"
+                              placeholder="your.email@example.com"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        {/* Phone & Tracking */}
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <label className="flex items-center gap-2 text-sm font-bold text-zinc-300 mb-2">
+                              <Phone className="w-4 h-4 text-purple-400" />
+                              Phone
+                            </label>
+                            <input
+                              type="tel"
+                              name="phone"
+                              value={formData.phone}
+                              onChange={handleChange}
+                              className="w-full bg-black/40 border border-white/10 text-white p-3 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition placeholder-zinc-500"
+                              placeholder="+1 XXX-XXX-XXXX"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="flex items-center gap-2 text-sm font-bold text-zinc-300 mb-2">
+                              <Package className="w-4 h-4 text-purple-400" />
+                              Tracking Number
+                            </label>
+                            <input
+                              type="text"
+                              name="trackingNumber"
+                              value={formData.trackingNumber}
+                              onChange={handleChange}
+                              className="w-full bg-black/40 border border-white/10 text-white p-3 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition placeholder-zinc-500"
+                              placeholder="TRK123456 (optional)"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Subject */}
+                        <div>
+                          <label className="flex items-center gap-2 text-sm font-bold text-zinc-300 mb-2">
+                            <MessageSquare className="w-4 h-4 text-purple-400" />
+                            Subject <span className="text-red-400">*</span>
+                          </label>
+                          <select
+                            name="subject"
+                            value={formData.subject}
+                            onChange={handleChange}
+                            className="w-full bg-black/40 border border-white/10 text-white p-3 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                            required
+                          >
+                            <option value="">Select issue type</option>
+                            <option value="tracking">📍 Tracking Issue</option>
+                            <option value="delayed">⏰ Delayed Delivery</option>
+                            <option value="damaged">📦 Damaged Parcel</option>
+                            <option value="lost">❌ Lost Parcel</option>
+                            <option value="pricing">💰 Pricing Inquiry</option>
+                            <option value="feedback">⭐ Feedback</option>
+                            <option value="other">🔧 Other</option>
+                          </select>
+                        </div>
+
+                        {/* Message */}
+                        <div>
+                          <label className="flex items-center gap-2 text-sm font-bold text-zinc-300 mb-2">
+                            <MessageSquare className="w-4 h-4 text-purple-400" />
+                            Message <span className="text-red-400">*</span>
+                          </label>
+                          <textarea
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            rows={6}
+                            className="w-full bg-black/40 border border-white/10 text-white p-3 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition resize-none placeholder-zinc-500"
+                            placeholder="Describe your issue in detail..."
+                            required
+                          />
+                          <p className="text-sm text-zinc-500 mt-1">
+                            Include tracking number, delivery address, and date if applicable
+                          </p>
+                        </div>
+
+                        {/* Submit Button */}
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full bg-gradient-to-r from-purple-600 to-cyan-600 text-white py-4 px-6 rounded-xl hover:shadow-2xl hover:shadow-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-500 flex items-center justify-center gap-2 font-bold text-lg"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                              Submitting...
+                            </>
+                          ) : (
+                            <>
+                              <Send className="w-5 h-5" />
+                              Submit Inquiry
+                            </>
+                          )}
+                        </button>
+                      </form>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Info Sidebar */}
+            <div className="lg:col-span-2 space-y-6">
+              {/* Emergency Contact */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 to-pink-600/20 rounded-2xl blur-xl opacity-50"></div>
+                <div className="relative bg-black/60 backdrop-blur-xl border border-red-500/30 p-6 rounded-2xl">
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="w-6 h-6 text-red-400 flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-black text-red-400 mb-2 text-lg">Emergency Contact</h3>
+                      <p className="text-sm text-zinc-300 mb-2">
+                        For lost or damaged parcels, call immediately:
+                      </p>
+                      <p className="text-2xl font-black text-white">+1-999-URGENT</p>
+                    </div>
                   </div>
-                </>
-              )}
+                </div>
+              </div>
+
+              {/* FAQ */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-cyan-500/10 rounded-2xl blur-xl"></div>
+                <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 p-6 rounded-2xl">
+                  <h3 className="text-xl font-black text-white mb-4">Quick Help</h3>
+                  <div className="space-y-4">
+                    {[
+                      { q: 'How do I track my parcel?', a: 'Enter your tracking number on the homepage or tracking page.' },
+                      { q: 'What if delivery is delayed?', a: 'Check tracking for updates or contact our 24/7 support team.' },
+                      { q: 'Can I reschedule delivery?', a: 'Yes! Contact us at least 2 hours before scheduled delivery.' }
+                    ].map((faq, index) => (
+                      <div key={index} className="border-l-2 border-purple-500 pl-4">
+                        <h4 className="font-bold text-white text-sm mb-1">{faq.q}</h4>
+                        <p className="text-zinc-400 text-xs">{faq.a}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* FAQ Section */}
-        <div className="mt-12 bg-white rounded-xl shadow-xl p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center flex items-center justify-center gap-2">
-            <Package className="w-7 h-7 text-orange-600" />
-            Delivery FAQs
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="border-l-4 border-orange-600 pl-4">
-              <h3 className="font-bold text-gray-900 mb-2">How do I track my parcel?</h3>
-              <p className="text-gray-600 text-sm">
-                Enter your tracking number on our homepage or use our mobile app. You'll get real-time updates on your parcel's location and estimated delivery time.
-              </p>
-            </div>
-            <div className="border-l-4 border-orange-600 pl-4">
-              <h3 className="font-bold text-gray-900 mb-2">What if my parcel is delayed?</h3>
-              <p className="text-gray-600 text-sm">
-                Delays can happen due to weather or high volume. Check tracking for updates or contact support. We'll prioritize your delivery and keep you informed.
-              </p>
-            </div>
-            <div className="border-l-4 border-orange-600 pl-4">
-              <h3 className="font-bold text-gray-900 mb-2">My parcel arrived damaged. What now?</h3>
-              <p className="text-gray-600 text-sm">
-                Contact us immediately with photos of the damage. We'll process your claim within 24 hours and arrange compensation or redelivery.
-              </p>
-            </div>
-            <div className="border-l-4 border-orange-600 pl-4">
-              <h3 className="font-bold text-gray-900 mb-2">Can I reschedule my delivery?</h3>
-              <p className="text-gray-600 text-sm">
-                Yes! Contact us at least 2 hours before scheduled delivery. You can change the time, date, or even the delivery address through our app or customer service.
-              </p>
-            </div>
-            <div className="border-l-4 border-orange-600 pl-4">
-              <h3 className="font-bold text-gray-900 mb-2">What are your delivery areas?</h3>
-              <p className="text-gray-600 text-sm">
-                We deliver nationwide across Bangladesh. Same-day delivery available in major cities. Check our coverage map for specific areas and timing.
-              </p>
-            </div>
-            <div className="border-l-4 border-orange-600 pl-4">
-              <h3 className="font-bold text-gray-900 mb-2">How much does delivery cost?</h3>
-              <p className="text-gray-600 text-sm">
-                Pricing depends on weight, distance, and delivery speed. Standard delivery starts at ৳50. Use our calculator on the homepage for exact quotes.
-              </p>
-            </div>
-          </div>
+      {/* Footer */}
+      <footer className="relative bg-black/80 backdrop-blur-xl border-t border-white/5 py-12 mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-zinc-600 text-sm">&copy; {new Date().getFullYear()} ParcelPro. All rights reserved. Powered by innovation.</p>
         </div>
-
-        {/* Service Guarantee */}
-        <div className="mt-8 bg-gradient-to-r from-orange-600 to-red-600 rounded-xl shadow-xl p-8 text-white text-center">
-          <Package className="w-12 h-12 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold mb-2">Our Delivery Promise</h2>
-          <p className="text-lg text-white/90 max-w-3xl mx-auto">
-            Safe, fast, and reliable delivery guaranteed. We handle your parcels with care and deliver on time, every time. 
-            Your satisfaction is our priority! 🚚💨
-          </p>
-        </div>
-      </div>
+      </footer>
     </div>
-    </>
   );
 };
 

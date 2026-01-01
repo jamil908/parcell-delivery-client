@@ -1,5 +1,4 @@
 
-
 import { useState } from "react";
 import { LogOut, Package, Menu, X } from "lucide-react"; 
 import toast from "react-hot-toast";
@@ -30,7 +29,6 @@ const Navbar = () => {
       toast.success("Logged out successfully");
       navigate("/login");
     } catch {
-      
       dispatch(logoutAction());
       navigate("/login");
     }
@@ -43,220 +41,189 @@ const Navbar = () => {
     closeMobileMenu();
   };
 
+  const navLinks = [
+    { to: "/", label: "Home" },
+    { to: "/about", label: "About" },
+    { to: "/contact", label: "Contact" },
+    { to: "/tracking", label: "Track Parcel" },
+  ];
 
-  const navLinks = (
-    <>
-      <Link
-        to="/"
-        className="text-gray-700 hover:text-blue-600 transition block px-3 py-2 rounded-md text-base md:text-sm font-medium"
-        onClick={closeMobileMenu}
-      >
-        Home
-      </Link>
-      <Link
-        to="/about"
-        className="text-gray-700 hover:text-blue-600 transition block px-3 py-2 rounded-md text-base md:text-sm font-medium"
-        onClick={closeMobileMenu}
-      >
-        About
-      </Link>
-      <Link
-        to="/contact"
-        className="text-gray-700 hover:text-blue-600 transition block px-3 py-2 rounded-md text-base md:text-sm font-medium"
-        onClick={closeMobileMenu}
-      >
-        Contact
-      </Link>
-      <Link
-        to="/tracking"
-        className="text-gray-700 hover:text-blue-600 transition block px-3 py-2 rounded-md text-base md:text-sm font-medium"
-        onClick={closeMobileMenu}
-      >
-        Track Parcel
-      </Link>
-    </>
-  );
+  const getDashboardLink = () => {
+    if (user?.role === "sender") return { to: "/sender-dashboard", label: "Dashboard" };
+    if (user?.role === "receiver") return { to: "/receiver-dashboard", label: "Dashboard" };
+    if (user?.role === "admin") return { to: "/admin-dashboard", label: "Admin" };
+    return null;
+  };
 
- 
-  const roleLinks = (
-    <>
-      {user?.role === "sender" && (
-        <Link
-          to="/sender-dashboard"
-          className="text-gray-700 hover:text-blue-600 transition block px-3 py-2 rounded-md text-base md:text-sm font-medium"
-          onClick={closeMobileMenu}
-        >
-          Sender Dashboard
-        </Link>
-      )}
-      {user?.role === "receiver" && (
-        <Link
-          to="/receiver-dashboard"
-          className="text-gray-700 hover:text-blue-600 transition block px-3 py-2 rounded-md text-base md:text-sm font-medium"
-          onClick={closeMobileMenu}
-        >
-          Receiver Dashboard
-        </Link>
-      )}
-      {user?.role === "admin" && (
-        <Link
-          to="/admin-dashboard"
-          className="text-gray-700 hover:text-blue-600 transition block px-3 py-2 rounded-md text-base md:text-sm font-medium"
-          onClick={closeMobileMenu}
-        >
-          Admin Dashboard
-        </Link>
-      )}
-    </>
-  );
-
- 
-  const desktopAuthLinks = (
-    <div className="flex items-center space-x-4">
-      {isLoading ? (
-     
-        <>
-          <div className="h-6 w-20 bg-gray-200 rounded animate-pulse"></div>
-          <div className="h-10 w-24 bg-gray-200 rounded-lg animate-pulse"></div>
-        </>
-      ) : user ? (
-     
-        <>
-          <span className="text-gray-900 font-medium">{user.name}</span>
-          <button
-            onClick={handleLogout}
-            className="flex items-center space-x-2 text-red-600 hover:text-red-700"
-            title="Logout"
-          >
-            <LogOut className="w-5 h-5" />
-            <span className="hidden sm:inline">Logout</span>
-          </button>
-        </>
-      ) : (
-       
-        <>
-          <Link
-            to="/login"
-            className="text-gray-700 hover:text-blue-600 transition"
-          >
-            Login
-          </Link>
-          <Link
-            to="/register"
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
-          >
-            Get Started
-          </Link>
-        </>
-      )}
-    </div>
-  );
-
-  const mobileAuthLinks = (
-    <div className="pt-4 pb-3 border-t border-gray-200">
-      {isLoading ? (
-        
-        <div className="px-5">
-          <div className="h-6 w-1/2 bg-gray-200 rounded animate-pulse mb-2"></div>
-          <div className="h-10 w-full bg-gray-200 rounded-lg animate-pulse"></div>
-        </div>
-      ) : user ? (
-        
-        <div className="px-5">
-          <div className="text-base font-medium text-gray-900">
-            {user.name}
-          </div>
-          {user.email && (
-            <div className="text-sm font-medium text-gray-500 mt-1">
-              {user.email}
-            </div>
-          )}
-          <button
-            onClick={handleMobileLogout}
-            className="mt-3 w-full flex items-center justify-center space-x-2 px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700"
-          >
-            <LogOut className="w-5 h-5" />
-            <span>Logout</span>
-          </button>
-        </div>
-      ) : (
-        <div className="px-5 space-y-3">
-          <Link
-            to="/login"
-            className="block w-full text-center px-4 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-            onClick={closeMobileMenu}
-          >
-            Login
-          </Link>
-          <Link
-            to="/register"
-            className="block w-full text-center bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
-            onClick={closeMobileMenu}
-          >
-            Get Started
-          </Link>
-        </div>
-      )}
-    </div>
-  );
+  const dashboardLink = getDashboardLink();
 
   return (
-    <div>
-      
-      <nav className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-         
-            <Link to="/" className="flex items-center space-x-2 shrink-0">
-              <Package className="w-8 h-8 text-blue-600" />
-              <span className="text-2xl font-bold text-gray-900">
-                ParcelPro
-              </span>
-            </Link>
-
-        
-            <div className="hidden md:flex items-center space-x-6">
-              <div className="flex items-center space-x-4">
-                {navLinks}
-                {roleLinks}
-              </div>
-              {desktopAuthLinks}
+    <nav className="sticky top-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2 shrink-0 group">
+            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform duration-300">
+              <Package className="w-6 h-6 text-white" />
             </div>
+            <span className="text-2xl font-black bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              ParcelPro
+            </span>
+          </Link>
 
-           
-            <div className="md:hidden flex items-center">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-700 hover:text-blue-600 focus:outline-none"
-                aria-label="Toggle menu"
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="text-zinc-300 hover:text-purple-400 transition-colors px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/5"
               >
-                {isMobileMenuOpen ? (
-                  <X className="w-7 h-7" />
-                ) : (
-                  <Menu className="w-7 h-7" />
-                )}
-              </button>
-            </div>
+                {link.label}
+              </Link>
+            ))}
+            {dashboardLink && (
+              <Link
+                to={dashboardLink.to}
+                className="text-zinc-300 hover:text-purple-400 transition-colors px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/5"
+              >
+                {dashboardLink.label}
+              </Link>
+            )}
           </div>
-        </div>
 
-  
-        <div
-          className={`
-            ${isMobileMenuOpen ? 'block' : 'hidden'} 
-            md:hidden 
-            absolute top-16 left-0 w-full bg-white shadow-xl
-            transition-all duration-300 ease-in-out
-          `}
-        >
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navLinks}
-            {roleLinks}
+          {/* Desktop Auth */}
+          <div className="hidden md:flex items-center space-x-4">
+            {isLoading ? (
+              <>
+                <div className="h-6 w-20 bg-white/10 rounded animate-pulse"></div>
+                <div className="h-10 w-24 bg-white/10 rounded-lg animate-pulse"></div>
+              </>
+            ) : user ? (
+              <>
+                <span className="text-zinc-300 font-medium">{user.name}</span>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center space-x-2 text-zinc-300 hover:text-red-400 transition-colors group"
+                  title="Logout"
+                >
+                  <LogOut className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                  <span className="hidden sm:inline font-medium">Logout</span>
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="text-zinc-300 hover:text-purple-400 transition-colors font-medium"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-6 py-2.5 rounded-lg font-bold hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
-          {mobileAuthLinks}
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-zinc-300 hover:text-purple-400 focus:outline-none transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-7 h-7" />
+              ) : (
+                <Menu className="w-7 h-7" />
+              )}
+            </button>
+          </div>
         </div>
-      </nav>
-    </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`
+          ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'} 
+          md:hidden 
+          overflow-hidden
+          transition-all duration-300 ease-in-out
+          bg-black/95 backdrop-blur-xl border-t border-white/10
+        `}
+      >
+        <div className="px-4 pt-4 pb-6 space-y-2">
+          {navLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className="block text-zinc-300 hover:text-purple-400 hover:bg-white/5 transition-all px-4 py-3 rounded-lg text-base font-medium"
+              onClick={closeMobileMenu}
+            >
+              {link.label}
+            </Link>
+          ))}
+          {dashboardLink && (
+            <Link
+              to={dashboardLink.to}
+              className="block text-zinc-300 hover:text-purple-400 hover:bg-white/5 transition-all px-4 py-3 rounded-lg text-base font-medium"
+              onClick={closeMobileMenu}
+            >
+              {dashboardLink.label}
+            </Link>
+          )}
+
+          {/* Mobile Auth */}
+          <div className="pt-6 mt-6 border-t border-white/10">
+            {isLoading ? (
+              <div className="space-y-3">
+                <div className="h-6 w-1/2 bg-white/10 rounded animate-pulse"></div>
+                <div className="h-12 w-full bg-white/10 rounded-lg animate-pulse"></div>
+              </div>
+            ) : user ? (
+              <div>
+                <div className="text-base font-bold text-white mb-1">
+                  {user.name}
+                </div>
+                {user.email && (
+                  <div className="text-sm text-zinc-400 mb-4">
+                    {user.email}
+                  </div>
+                )}
+                <button
+                  onClick={handleMobileLogout}
+                  className="w-full flex items-center justify-center space-x-2 px-4 py-3 rounded-lg text-base font-bold text-white bg-gradient-to-r from-red-600 to-pink-600 hover:shadow-2xl hover:shadow-red-500/50 transition-all duration-300"
+                >
+                  <LogOut className="w-5 h-5" />
+                  <span>Logout</span>
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <Link
+                  to="/login"
+                  className="block w-full text-center px-4 py-3 rounded-lg text-base font-bold text-zinc-300 hover:text-purple-400 hover:bg-white/5 transition-all"
+                  onClick={closeMobileMenu}
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="block w-full text-center bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300"
+                  onClick={closeMobileMenu}
+                >
+                  Get Started
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
 
